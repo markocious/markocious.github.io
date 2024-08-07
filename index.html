@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkgie</title>
+    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="flickity.css">
+</head>
+<body>
+    <div class="canvas">
+        <div class="sticky">
+            <nav class="navigation-bar" id="nav-bar">
+                <ul class="navigation left-nav">
+                    <li class="navigation__item" id="nav-hero">
+                        <a href="#hero">Home</a>
+                    </li>
+                    <li class="navigation__item" id="nav-artists">
+                        <a href="#artists">Artists</a>
+                    </li>
+                    <li class="navigation__item" id="nav-gallery">
+                        <a href="#gallery">Gallery</a>
+                    </li>
+                </ul>
+                <div class="logo">
+                    <a href="#home"><img src="logo-header.png" alt="Logo"></a>
+                </div>
+                <ul class="navigation right-nav">
+                    <li class="navigation__item" id="nav-services">
+                        <a href="#services">Services</a>
+                    </li>
+                    <li class="navigation__item" id="nav-clinic">
+                        <a href="#clinic">Clinic</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <canvas class="canvas-2"></canvas>
+        <div class="container">
+            <h1 class="banner">We Turn Skin Into Art;</h1>
+        </div>
+        <a class="button" id="book-now">BOOK NOW</a>
+    </div>
+
+    <section id="artists">
+        <div class="canvas-artists">
+            <div class="container-artists">
+                <h1 class="artist">Artists;<br> Masterpieces in Motion</h1>
+                <p class="artist">Crafting Dreams into Stunning, Wearable Art.</p>
+            </div>
+        </div>
+        <div class="artist-grid">
+            <section class="section-1">
+                <div class="row">
+                    <figure class="figure">
+                        <img src="img-artist-1.png">
+                        <img class="hover-image" src="img-artist-bnw-1.png">
+                    </figure>
+                    <figure class="figure">
+                        <img src="img-artist-2.png">
+                        <img class="hover-image" src="img-artist-bnw-2.png">
+                    </figure>
+                    <figure class="figure">
+                        <img src="img-artist-3.png">
+                        <img class="hover-image" src="img-artist-bnw-3.png">
+                    </figure>
+                    <figure class="figure">
+                        <img src="img-artist-4.png">
+                        <img class="hover-image" src="img-artist-bnw-4.png">
+                    </figure>
+                    <figure class="figure">
+                        <img src="img-artist-5.png">
+                        <img class="hover-image" src="img-artist-bnw-5.png">
+                    </figure>
+                    <figure class="figure">
+                        <img src="img-artist-6.png">
+                        <img class="hover-image" src="img-artist-bnw-6.png">
+                    </figure>
+                </div>
+            </section>
+        </div>
+    </section>
+    <button class="button-inquire">Inquire Now</button>
+    <section id="services">
+        <div class="canvas-services">
+            <div class="container-services">
+            </div>
+        </div>
+        <div class="artist-grid2">
+            <div class="container">
+                <h1 class="services">Services;</h1>
+                <p class="services">Harmonizing Art and Expression</p>
+                <div>
+                    <div class="button-container">
+                        <button class="button-service1">TATTOOS</button>
+                        <button class="button-service1">Aesthetics</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+    <section id="gallery">
+        <div class="canvas-gallery">
+            <div class="container-services">
+                <h1 class="gallery">OUR WORKS</h1>
+                <p class="gallery">Ink Your Memories. Wear Your Story.</p>
+            </div>
+        </div>
+        <!-- Flickity HTML init -->
+        <div class="carousel" data-flickity='{ "freeScroll": true, "wrapAround": true }'>
+            <div class="carousel-cell" style="background-image: url(img-works-1.png);"></div>
+            <div class="carousel-cell" style="background-image: url(img-works-2.png);"></div>
+            <div class="carousel-cell" style="background-image: url(img-works-3.png);"></div>
+        </div>
+        <button class="button-booknowcarousel">BOOK NOW</button>
+    </section>
+    <section id="clinic">
+        <footer class="footer">
+            <div class="footer-section">
+                <h1 class="footers">Location</h1>
+                <p class="footerx">Davao City, Philippines</p>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11198.685102923386!2d125.60439495053292!3d7.08733137191101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32f96deb17910d61%3A0x3fd535c44375256b!2sInkgie%20Tattoo%20and%20Aesthetics!5e0!3m2!1sen!2sph!4v1723001918164!5m2!1sen!2sph"
+                    width="580" height="380" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="footer-section">
+                <img src="logo-footer.png" alt="Company Logo" class="footer-logo">
+                <h1 class="foofighters">InkGie</h1>
+                <p class="footerxxx">Tattoo & Aesthetics</p>
+            </div>
+            <div class="footer-section">
+                <h1 class="footers">Hours</h1>
+                <p class="footerx">Mon- Sat: 9AM - 6PM</p>
+                <h1 class="footers">SOCIALs</h1>
+                <div class="social-icons">
+                    <a href="https://facebook.com/almarkohundam"><img src="fb.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com/markiiiijuana/"><img src="ig.png" alt="Instagram"></a>
+                    <a href="https://www.tiktok.com/@markocious"><img src="tt.png" alt="TikTok"></a>
+                </div>
+                <h1 class="footers">Contact</h1>
+                <p>sample@gmail.com</p>
+                <p>+63 999 492 8190</p>
+            </div>
+        </footer>
+    </section>
+    <script src="flickity.pkgd.min.js"></script>
+    <script src="forflick.js"></script>
+</body>
+</html>
