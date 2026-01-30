@@ -23,6 +23,10 @@ export default function Result({ fish, userImage, onSave, onScanAgain }) {
 
   // Use user's image if available, otherwise fallback to stock image
   const displayImage = userImage || fish.image;
+  
+  const [showPinoy, setShowPinoy] = React.useState(false);
+
+  const displayedRecipes = showPinoy && fish.pinoyRecipes ? fish.pinoyRecipes : fish.recipes;
 
   return (
     <div style={{ padding: '24px', paddingBottom: '100px', animation: 'fadeIn 0.5s ease' }}>
@@ -60,6 +64,14 @@ export default function Result({ fish, userImage, onSave, onScanAgain }) {
               {getSafetyLabel(fish.safetyLevel)}
             </span>
             <h1 style={{ fontSize: '1.75rem', marginBottom: '4px' }}>{fish.commonName}</h1>
+            
+            {/* Local Names Section */}
+            {fish.localNames && (
+              <div style={{ fontSize: '0.9rem', color: 'var(--color-primary)', marginBottom: '8px', fontWeight: 500 }}>
+                🇵🇭 Tagalog: {fish.localNames.tagalog} • Bisaya: {fish.localNames.bisaya}
+              </div>
+            )}
+
             <p className="text-muted" style={{ fontStyle: 'italic' }}>{fish.scientificName}</p>
             <p className="text-muted" style={{ fontSize: '0.875rem' }}>Pronounced: {fish.pronunciation}</p>
           </div>
@@ -77,12 +89,39 @@ export default function Result({ fish, userImage, onSave, onScanAgain }) {
                 ))}
               </ul>
 
-              {fish.recipes && fish.recipes.length > 0 && (
+              {(fish.recipes || fish.pinoyRecipes) && (
                 <>
                   <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(0,0,0,0.1)', margin: '16px 0' }}></div>
-                  <h3 style={{ fontSize: '1.1rem', marginBottom: '12px' }}>Tasty Recipes</h3>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Tasty Recipes</h3>
+                    
+                    {fish.pinoyRecipes && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)', fontWeight: 500 }}>
+                          Switch ➔
+                        </span>
+                        <button 
+                          onClick={() => setShowPinoy(!showPinoy)}
+                          style={{ 
+                            fontSize: '0.8rem', 
+                            padding: '4px 12px', 
+                            borderRadius: '20px', 
+                            cursor: 'pointer',
+                            backgroundColor: showPinoy ? 'var(--color-primary)' : 'white',
+                            color: showPinoy ? 'white' : 'var(--color-primary)',
+                            border: '1px solid var(--color-primary)',
+                            boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+                          }}
+                        >
+                         {showPinoy ? '🇵🇭 Pinoy Style' : '🌎 International'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {fish.recipes.map((recipe, index) => (
+                    {displayedRecipes && displayedRecipes.map((recipe, index) => (
                       <a 
                         key={index} 
                         href={`https://www.google.com/search?q=recipe+${encodeURIComponent(recipe.name)}+${encodeURIComponent(fish.commonName)}`}
@@ -99,7 +138,7 @@ export default function Result({ fish, userImage, onSave, onScanAgain }) {
                           borderRadius: '8px'
                         }}
                       >
-                        <span style={{ marginRight: '8px' }}>🍲</span>
+                        <span style={{ marginRight: '8px' }}>{showPinoy ? '🍛' : '🍲'}</span>
                         {recipe.name}
                         <span style={{ marginLeft: 'auto', fontSize: '0.9em', opacity: 0.6 }}>↗</span>
                       </a>

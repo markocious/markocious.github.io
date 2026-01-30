@@ -29,7 +29,7 @@ export const identifyFishWithGemini = async (imageBase64) => {
     }
   }
 
-  const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   // Remove data URL prefix (e.g., "data:image/png;base64,")
   const base64Data = imageBase64.split(',')[1];
@@ -42,21 +42,32 @@ export const identifyFishWithGemini = async (imageBase64) => {
   1. Identify the fish.
   2. Determine if it is safe to eat.
   3. Provide simple cooking tips.
-  4. Provide 3 specific, popular recipe names for this fish.
-  5. Provide a fun fact.
+  4. Provide 3 specific, popular recipe names (International).
+  5. Provide 3 specific Filipino/Pinoy recipe names.
+  6. Provide local names in Philippines (Tagalog and Bisaya).
+  7. Provide a fun fact.
   
   Return ONLY raw JSON (no markdown formatting) with this structure:
   {
     "commonName": "Common Name",
     "scientificName": "Scientific Name",
+    "localNames": {
+      "tagalog": "Tagalog Name",
+      "bisaya": "Bisaya Name"
+    },
     "pronunciation": "Phonetic pronunciation",
     "safetyLevel": "safe" | "caution" | "avoid",
     "edibilityText": "2-3 warm, human-like sentences explaining if it's safe and what it tastes like. Use a helpful tone.",
     "cookingMethods": ["Tip 1", "Tip 2", "Tip 3"],
     "recipes": [
-      { "name": "Recipe Name 1 (e.g. Sweet and Sour Fish)" },
+      { "name": "Recipe Name 1" },
       { "name": "Recipe Name 2" },
       { "name": "Recipe Name 3" }
+    ],
+    "pinoyRecipes": [
+      { "name": "Pinoy Recipe 1 (e.g. Sinigang na...)" },
+      { "name": "Pinoy Recipe 2" },
+      { "name": "Pinoy Recipe 3" }
     ],
     "funFact": "One cheerful and educational fact.",
     "tips": "One safety or handling tip."
