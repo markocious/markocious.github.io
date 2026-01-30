@@ -22,9 +22,20 @@ function App() {
     localStorage.setItem('fishda_collection', JSON.stringify(collection));
   }, [collection]);
 
+  /* New State to track if we are viewing a saved catch vs a new scan */
+  const [isViewingSaved, setIsViewingSaved] = useState(false);
+
   const handleIdentify = (fish, image) => {
     setCurrentFish(fish);
     setUserImage(image);
+    setIsViewingSaved(false); // It's a new scan
+    setView('result');
+  };
+
+  const handleViewCatch = (savedItem) => {
+    setCurrentFish(savedItem);
+    setUserImage(savedItem.userImage);
+    setIsViewingSaved(true); // It's an existing catch
     setView('result');
   };
 
@@ -43,7 +54,10 @@ function App() {
   const handleScanAgain = () => {
     setCurrentFish(null);
     setUserImage(null);
+    setIsViewingSaved(false);
     setView('home');
+    // If coming from collection, maybe we want to go back to collection? 
+    // But "Scan Again" implies going to camera.
   };
 
   const renderView = () => {
@@ -57,10 +71,11 @@ function App() {
             userImage={userImage}
             onSave={handleSave} 
             onScanAgain={handleScanAgain} 
+            isSaved={isViewingSaved}
           />
         );
       case 'collection':
-        return <Collection savedFish={collection} />;
+        return <Collection savedFish={collection} onView={handleViewCatch} />;
       case 'profile':
         return (
           <div className="container" style={{ paddingTop: '40px' }}>

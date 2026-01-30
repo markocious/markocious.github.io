@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Collection({ savedFish }) {
+export default function Collection({ savedFish, onView }) {
   if (!savedFish || savedFish.length === 0) {
     return (
       <div className="container" style={{ paddingTop: '80px', textAlign: 'center' }}>
@@ -28,7 +28,19 @@ export default function Collection({ savedFish }) {
         gap: '16px' 
       }}>
         {savedFish.map((item, index) => (
-          <div key={index} className="card" style={{ padding: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div 
+            key={index} 
+            className="card" 
+            onClick={() => onView(item)}
+            style={{ 
+              padding: '12px', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center',
+              cursor: 'pointer',
+              transition: 'transform 0.1s'
+            }}
+          >
             <div style={{ 
               width: '100px', 
               height: '100px', 

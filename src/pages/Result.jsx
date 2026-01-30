@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Result({ fish, userImage, onSave, onScanAgain }) {
+export default function Result({ fish, userImage, onSave, onScanAgain, isSaved }) {
   if (!fish) return null;
 
   const getSafetyColor = (level) => {
@@ -155,19 +155,21 @@ export default function Result({ fish, userImage, onSave, onScanAgain }) {
           </div>
 
           <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>
-             <button 
-              className="btn btn-primary" 
-              style={{ flex: 1 }}
-              onClick={onSave}
-            >
-              Add to Collection
-            </button>
+            {!isSaved && (
+              <button 
+                className="btn btn-primary" 
+                style={{ flex: 1 }}
+                onClick={onSave}
+              >
+                Add to Collection
+              </button>
+            )}
             <button 
               className="btn btn-ghost" 
-              style={{ padding: '0 16px' }}
+              style={{ flex: isSaved ? 1 : '0 0 auto', padding: '0 16px', border: isSaved ? '1px solid #ddd' : 'none' }}
               onClick={onScanAgain}
             >
-              Scan Again
+              {isSaved ? "Back to Camera" : "Scan Again"}
             </button>
           </div>
         </div>
