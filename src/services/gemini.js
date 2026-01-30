@@ -3,18 +3,36 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 let genAI = null;
 
 export const initializeGemini = (apiKey) => {
-  genAI = new GoogleGenerativeAI(apiKey);
+  if (apiKey) {
+    genAI = new GoogleGenerativeAI(apiKey);
+    localStorage.setItem('fishda_api_key', apiKey); // Save for future sessions
+  }
+};
+
+export const getStoredKey = () => {
+  return localStorage.getItem('fishda_api_key');
+};
+
+export const clearStoredKey = () => {
+  localStorage.removeItem('fishda_api_key');
+  genAI = null;
 };
 
 export const identifyFishWithGemini = async (imageBase64) => {
   if (!genAI) {
-    throw new Error("API Key not set");
+    // Try to auto-initialize from storage
+    const stored = getStoredKey();
+    if (stored) {
+      initializeGemini(stored);
+    } else {
+      throw new Error("API_KEY_MISSING");
+    }
   }
 
-  const model = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
 
   // Remove data URL prefix (e.g., "data:image/png;base64,")
-  const base64Data = imageBase64.split(',')[1];
+  const base64Data = imageBase664.split(',')[1];
   
   const prompt = `
   You are 'Fishda', a friendly, calm, and trustworthy expert fishing companion.

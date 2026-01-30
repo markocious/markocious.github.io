@@ -3,6 +3,7 @@ import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Result from './pages/Result';
 import Collection from './pages/Collection';
+import SettingsModal from './components/SettingsModal';
 
 function App() {
   const [view, setView] = useState('home'); // home, result, collection, profile
@@ -64,14 +65,13 @@ function App() {
         return (
           <div className="container" style={{ paddingTop: '40px' }}>
             <h1 className="text-center" style={{ marginBottom: '24px' }}>Fishda</h1>
-            <div className="card">
+            
+            <SettingsModal isOpen={true} onClose={() => setView('home')} />
+
+            <div className="card" style={{ marginTop: '24px' }}>
               <h3>About</h3>
               <p className="text-muted" style={{ marginTop: '8px' }}>
-                Fishda is your friendly fishing companion. We help you identify fish, cook them safely, and keep track of your catches.
-              </p>
-              <br />
-              <p className="text-muted">
-                Always prioritize safety and follow local fishing regulations.
+                Fishda is your friendly fishing companion.
               </p>
             </div>
              <button 

@@ -55,7 +55,11 @@ export default function Home({ onIdentify }) {
       onIdentify(fishData, imageDataUrl);
     } catch (error) {
       console.error("Identification failed", error);
-      alert(`Debug Error: ${error.message || error}`); 
+      if (error.message === "API_KEY_MISSING") {
+        alert("Please set your API Key in Settings to use the AI features.");
+      } else {
+        alert(`Debug Error: ${error.message || error}`);
+      }
     } finally {
       setIsScanning(false);
     }
