@@ -32,7 +32,7 @@ export const identifyFishWithGemini = async (imageBase64) => {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
 
   // Remove data URL prefix (e.g., "data:image/png;base64,")
-  const base64Data = imageBase664.split(',')[1];
+  const base64Data = imageBase64.split(',')[1];
   
   const prompt = `
   You are 'Fishda', a friendly, calm, and trustworthy expert fishing companion.
