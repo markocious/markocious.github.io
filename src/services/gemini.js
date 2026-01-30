@@ -29,7 +29,7 @@ export const identifyFishWithGemini = async (imageBase64) => {
     }
   }
 
-  const model = genAI.getGenerativeModel({ model: " gemini-flash-latest" });
+  const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
   // Remove data URL prefix (e.g., "data:image/png;base64,")
   const base64Data = imageBase64.split(',')[1];
